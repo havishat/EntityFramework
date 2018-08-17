@@ -28,8 +28,19 @@ namespace ConsoleApp1
             Console.ReadLine();
             */
 
+            /*
             var names = GetCustomerNames();
             names.ForEach(x => Console.WriteLine(x));
+
+            Console.ReadLine();
+            */
+
+            var results = GetTopNCustomersSortedByLastName(3);
+
+            foreach(var result in results)
+            {
+                Console.WriteLine(name);
+            }
 
             Console.ReadLine();
 
@@ -53,13 +64,17 @@ namespace ConsoleApp1
             }
         }
 
-        /*
+       
         public static List<Customer> GetTopNCustomersSortedByLastName(int n)
         {
+            using (var db = new AdventureWorksEntities())
+            {
+                return db.Customers.OrderBy(x => x.LastName).ThenBy(x => x.FirstName).Take(n).ToList();
+            }
 
         }
 
-    */
+    
 
     }
 }
